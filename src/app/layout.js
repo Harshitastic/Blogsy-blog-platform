@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
               </div>
               <footer className="main-footer">
                 <div className="container footer-container">
-                  <span>&copy; {new Date().getFullYear()} Blogsy. Built with Next.js, SQLite & Prisma.</span>
+                  <span>&copy; {new Date().getFullYear()} Blogsy.</span>
                   <a 
                     href="https://github.com/harshitastic" 
                     target="_blank" 

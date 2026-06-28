@@ -1267,6 +1267,61 @@ button, input, textarea, select {
     gap: 12px;
     text-align: center;
   }
+
+  /* Compact Navbar for Mobile */
+  .nav-links {
+    gap: 8px;
+  }
+  
+  .nav-link-item span,
+  .nav-btn-write span,
+  .nav-btn-signup span,
+  .profile-name {
+    display: none;
+  }
+
+  .nav-btn-write,
+  .nav-btn-signup {
+    padding: 8px;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+  }
+  
+  .user-profile-badge {
+    padding: 4px;
+    border-radius: 50%;
+  }
+
+  .header-container {
+    padding: 0 12px;
+  }
+  
+  .logo-text {
+    font-size: 1.1rem;
+  }
+
+  /* Compact Page Spacings */
+  .auth-card {
+    padding: 20px;
+  }
+
+  .editor-main-card {
+    padding: 16px;
+  }
+
+  .editor-title-input {
+    font-size: 1.5rem;
+  }
+
+  .article-title-main {
+    font-size: 1.8rem;
+  }
+
+  .article-large-cover {
+    height: 200px;
+  }
 }
 
 /* Likes button & count styling */
