@@ -4,6 +4,14 @@ Blogsy is an elegant, simple, and clean minimalist blogging platform built with 
 
 ---
 
+## 📸 Screenshots
+
+| Landing Page Feed (Light Theme) | Login Panel (Dark Theme) |
+| --- | --- |
+| ![Landing Page](public/screenshots/landing_page.png) | ![Login Page](public/screenshots/login_page.png) |
+
+---
+
 ## ✨ Features
 
 - **🎨 Minimalist Design**: Clean light & dark theme configurations mapped to CSS variables (styled in Poppins typography).
