@@ -28,8 +28,8 @@ Blogsy is an elegant, simple, and clean minimalist blogging platform built with 
 
 - **Core**: React 19, Next.js 16 (App Router + Turbopack)
 - **Styling**: Vanilla CSS with modern custom utility variables (`globals.css`)
-- **Database**: SQLite database run via Prisma 7 Client (configured with better-sqlite3 drivers)
-- **Security**: JSON Web Tokens (JWT) signatures, Route Interceptors (`proxy.js`)
+- **Database**: SQLite (locally) or PostgreSQL / Neon (production) run via Prisma 7 Client (configured with dynamic database auto-creation and routing)
+- **Security**: JSON Web Tokens (JWT) signatures, Client-side Authorization guards, Route Interceptors (`proxy.js`)
 
 ---
 
@@ -43,11 +43,13 @@ Ensure you have Node.js (v18+) and npm installed.
 npm install
 ```
 
-### 3. Database Migration
-Initialize and sync the database schema:
+### 3. Database Setup
+For local development (SQLite):
 ```bash
-npx prisma migrate dev
+npx prisma db push
 ```
+For production (PostgreSQL / Neon):
+The deployment build script dynamically checks and auto-creates a dedicated `blogsy` database on Neon, and points the Prisma connection to it to avoid schema clashes with other projects.
 
 ### 4. Generate Prisma Client
 Generate the type-safe client bindings:
