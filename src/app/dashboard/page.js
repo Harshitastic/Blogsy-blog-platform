@@ -8,6 +8,7 @@ import {
   MessageSquare, Layers, EyeOff, Eye, Image as ImageIcon, Heart
 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // Helper to format date
 function formatDate(dateString) {
@@ -18,10 +19,17 @@ function formatDate(dateString) {
 export default function DashboardPage() {
   const { user, loading: authLoading } = useAuth();
   const { showToast } = useToast();
+  const router = useRouter();
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/login?callbackUrl=/dashboard');
+    }
+  }, [user, authLoading, router]);
 
   useEffect(() => {
     if (!user) return;

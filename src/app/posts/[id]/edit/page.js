@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import EditorForm from '@/components/EditorForm';
 import { useToast } from '@/components/ToastProvider';
 import { Loader2 } from 'lucide-react';
+import { useAuth } from '@/components/AuthProvider';
 
 export default function EditPostPage({ params }) {
   // Unwrap parameters hook in Next.js 15
@@ -13,10 +14,17 @@ export default function EditPostPage({ params }) {
   
   const router = useRouter();
   const { showToast } = useToast();
+  const { user, loading: authLoading } = useAuth();
   
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push(`/login?callbackUrl=/posts/${id}/edit`);
+    }
+  }, [user, authLoading, router, id]);
 
   useEffect(() => {
     async function fetchPost() {
@@ -60,11 +68,13 @@ export default function EditPostPage({ params }) {
     }
   };
 
-  if (loading) {
+  if (authLoading || !user || loading) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', gap: '16px' }}>
         <Loader2 size={36} className="logo-icon" style={{ animation: 'spin 1s linear infinite' }} />
-        <p style={{ color: 'var(--text-secondary)' }}>Loading post editor...</p>
+        <p style={{ color: 'var(--text-secondary)' }}>
+          {authLoading ? 'Verifying authorization...' : 'Loading post editor...'}
+        </p>
         <style jsx global>{`
           @keyframes spin {
             to { transform: rotate(360deg); }
